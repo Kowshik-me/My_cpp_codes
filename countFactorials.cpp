@@ -11,34 +11,37 @@ Constraints :
 2) l, h are both long integers.
 3) The range should be non decreasing, i.e l <= h.It is not, return -1.
 
-DONT CHANGE THE FUNCTION HEADERS.
+DONT CHANGE THE FUNCTION HEADERS.*/
 
 
 
-*/
-
-#include <stdio.h>
-long factorial(int x)
-{
-	if(x==0||x==1)
-	return 1;
-	else
-	return x*factorial(x-1);
-}
 
 int countFactorials(long l, long h)
 {
-	if(l<0||h<0||l>h)   //error  cases
-	return -1;
-	int i = 0, counter = 0 ;
-	long f;
-	while((f=factorial(i))<=h)
+	int fact = 1, x = 1; 
+	if(l<=h)
 	{
-		if(f>=l&&f<=h)
-		counter++;
-		i++;
-	}
-	return counter;
+	// factorials in the range [1,low)
+    while (fact < low) 
+    { 
+        fact = fact*x; 
+        x++; 
+    } 
+  
+    // Count factorial numbers in range [low, high] 
+    int res = 0; 
+    while (fact <= high) 
+    { 
+        res++; 
+        fact = fact*x; 
+        x++; 
+    } 
+  
+    // Return the count 
+    return res; 
+}
+else
+	return -1;
 }
 
 
